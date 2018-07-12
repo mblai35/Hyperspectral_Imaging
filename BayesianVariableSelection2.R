@@ -10,7 +10,7 @@ require(rjags)
 #-----------------------------------------------------------------------
 
 # Set working directory.
-setwd("/Users/mblai/Documents/Thesis/Hyperspectral Imaging")
+#setwd("/Users/mblai/Documents/Thesis/Hyperspectral Imaging")
 
 # Import .csv files. 
 chl <- fread('Chlorophyll.csv', skip = 2, stringsAsFactors = T)
