@@ -46,13 +46,6 @@ mu[i] <- alpha + inprod(wavelengths[i,], beta[])
 
 }
 
-# Prior for wavelengths
-for(j in 1:p){
-
-wavelenghs[i, j] ~ dbern(0.5)
-
-}
-
 # Prior for beta
 for(j in 1:p){
 
