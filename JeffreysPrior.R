@@ -67,7 +67,9 @@ alpha     ~ dnorm(0, 0.000001)
 model <- jags.model(textConnection(model_string), 
                     data = list(chlorophyll = chlorophyll,
                                 n = n, p = p, 
-                                wavelengths = wavelengths))
+                                wavelengths = wavelengths),
+                    inits = list(alpha = 0, tau = 1, 
+                                 InTau = rep(1, p)))
 
 update(model, 1000)
 
