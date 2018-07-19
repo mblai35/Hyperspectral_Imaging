@@ -48,7 +48,7 @@ model_string <- "model{
   # Prior for beta
   for(j in 1:p){
 
-  ind[j] ~ dbern(0.2)
+  ind[j] ~ dbern(pind)
   betaT[j] ~ dnorm(0, taub)
   beta[j] <- ind[j] * betaT[j]
 
@@ -58,6 +58,7 @@ model_string <- "model{
   alpha ~ dnorm(0, 0.0001)
   tau ~ dgamma(1, 0.001)
   taub ~ dgamma(1, 0.001)
+  pind ~ dbeta(2, 8)
 
 }"
 
@@ -73,8 +74,9 @@ model <- jags.model(textConnection(model_string),
 update(model, 1000)
 
 samp <- coda.samples(model, 
-                      variable.names = c("beta"), 
-                      n.iter = 2000)
+                     variable.names=c("alpha","beta","ind",
+                                      "tau","taub", "pind"),
+                    n.iter = 5000)
 
 summary(samp)
 saveRDS(samp, file = "samp.rds")
