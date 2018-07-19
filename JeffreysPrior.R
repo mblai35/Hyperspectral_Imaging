@@ -73,7 +73,7 @@ update(model, 1000)
 
 samp <- coda.samples(model, 
                      variable.names = c("beta", "Ind"), 
-                     n.iter = 2000)
+                     n.iter = 1000)
 
 summary(samp)
 saveRDS(samp, file = "samp.rds")
