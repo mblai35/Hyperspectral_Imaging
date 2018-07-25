@@ -58,7 +58,7 @@ model_string <- "model{
   alpha ~ dnorm(0, 0.0001)
   tau ~ dgamma(1, 0.001)
   taub ~ dgamma(1, 0.001)
-  pind ~ dbeta(2, 8)
+  pind ~ dbeta(1, 4)
 
 }"
 
@@ -71,12 +71,12 @@ model <- jags.model(textConnection(model_string),
                                  betaT = rep(0, p), 
                                  ind = rep(0, p)))
 
-update(model, 1000)
+update(model, 2500)
 
 samp <- coda.samples(model, 
                      variable.names=c("alpha","beta","ind",
                                       "tau","taub", "pind"),
-                    n.iter = 5000)
+                    n.iter = 10000)
 
 summary(samp)
 saveRDS(samp, file = "samp.rds")
